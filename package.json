@@ -21,6 +21,7 @@
     "mongoose": "^8.17.1",
     "nanoid": "^5.1.5",
     "path": "^0.12.7",
+    "serverless-http": "^3.2.0",
     "useragent": "^2.3.0"
   },
   "devDependencies": {
