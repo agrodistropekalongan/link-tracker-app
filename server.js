@@ -1,13 +1,22 @@
-require('dotenv').config();
-const express = require('express');
-const geoip = require('geoip-lite');
-const useragent = require('useragent');
-const cors = require('cors');
-const { nanoid } = require('nanoid');
-const path = require('path');
-const fs = require('fs');
-const { Low } = require('lowdb');
-const { JSONFile } = require('lowdb/node');
+import dotenv from 'dotenv';
+import express from 'express';
+import geoip from 'geoip-lite';
+import useragent from 'useragent';
+import cors from 'cors';
+import { nanoid } from 'nanoid';
+import path from 'path';
+import fs from 'fs';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
+import { fileURLToPath } from 'url';
+
+// 🔽 2. Reconstruct __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 🔽 3. Load environment variables
+dotenv.config();
+
 
 const app = express();
 
@@ -16,7 +25,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const locationRoutes = require('./routes/location');
+import locationRoutes from './routes/location.js';
+
 app.use('/api', locationRoutes);
 
 // Setup Lowdb

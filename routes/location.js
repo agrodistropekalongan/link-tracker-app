@@ -1,7 +1,8 @@
 // routes/location.js
-const express = require('express');
+import express from 'express';
+import db from '../data/db.js'; // 👈 note the `.js` extension
+
 const router = express.Router();
-const db = require('../data/db'); // assuming Lowdb is initialized here
 
 router.post('/location', (req, res) => {
   const { latitude, longitude, timestamp } = req.body;
@@ -17,4 +18,5 @@ router.post('/location', (req, res) => {
   res.json({ status: 'Location saved' });
 });
 
-module.exports = router;
+//module.exports = router;
+export default router;
